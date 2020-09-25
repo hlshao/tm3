@@ -47,16 +47,25 @@ wordcloud2(demoFreq, figPath = figPath, size = 1.5,color = "skyblue")
 figPath = system.file("examples/cat.png",package = "wordcloud2")
 wordcloud2(demoFreq, figPath = figPath, size = 1.0,color = "black")
 
-
-
 ## Part II: txt to database
 # 1.read data
+
 csv <- data.frame(ID=c("ko1","ko2","han3","han4"),
                     content=c("台北市政府日前推出口罩販賣機，柯文哲更下令下週12行政區全部上，柯文哲11日才在口罩販賣機上線記者會上，說「看到大家排隊買口罩我受不了！」所以推出口罩販賣機，並揚言下周12行政區都要上。",
                               "台灣感染武漢肺炎病毒機率最高的前5名城市依序是台北市。柯文哲上午參加里長座談前受訪指出",
                               "高雄市長韓國瑜14日晚間的直播中卻出現罕見的「粉色襯衫」，談到高雄市的「一級開設」，韓國瑜也在直播中感謝市民。",
                               "韓國瑜昨晚穿起粉紅色襯衫、穿戴起粉紅色，反駁日前被高雄市議員質疑沒市政行程「市長真好當」，他強調沒公開行程，不代表沒行程。")
                               ,stringsAsFactors = FALSE)
+
+
+a= "我們可以把想製作雲朵的文章往上面貼"
+b= "文字雲的存在目的在於能讓閱讀者在不閱讀所有文章的前提下"
+c= "它就可以畫出漂亮的文字雲"
+d= "由各種字詞組合成如雲一般的圖形稱作文字雲" 
+e= "在世界各地，企業、學校和用戶都使用 G Suite 來聯繫和完成工作"
+csv= data.frame(ID=c("1","2","3","4","5"),content=c(a,b,c,d,e),stringsAsFactors = FALSE)
+
+
 
 
 ## 2. segment
@@ -66,8 +75,8 @@ for (i in 1:nrow(csv)){
 }
 
 ## 3.dtm
-dtm <- DocumentTermMatrix(VCorpus(VectorSource(csv$seg))) 
-
+dtm <- DocumentTermMatrix(Corpus(VectorSource(csv$seg))) 
+dtm
 
 ## 4. similarity doc
 mydata.df <- as.matrix(dtm) 
